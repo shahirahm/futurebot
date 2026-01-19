@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mentor Registration - FutureBot</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * {
     box-sizing: border-box;
@@ -80,14 +81,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     padding: 0;
   }
   
-  body {
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+   background: linear-gradient(135deg, #e6f8e8 0%, #e4f0e8 100%);
     color: #2c3e50;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden;
+    align-items: center;
   }
 
   /* Animated Background */
@@ -162,22 +165,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       transform: translateY(-15px) translateX(-10px);
     }
   }
-  
-  /* Navbar */
+
   nav {
     width: 100%;
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+     background: rgba(243, 253, 246, 0.95);
+    box-shadow: 0 4px 20px rgba(71, 71, 71, 0.23);
     position: fixed;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid rgba(67, 97, 238, 0.1);
   }
-  
   nav .logo {
     font-size: 1.8rem;
     font-weight: bold;
@@ -189,18 +190,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     align-items: center;
     gap: 10px;
   }
-  
   nav .logo i {
     font-size: 1.5rem;
   }
-  
   nav .nav-buttons {
     display: flex;
     gap: 10px;
     align-items: center;
   }
-  
-  nav .nav-buttons button {
+  nav .nav-buttons button,
+  nav .dropdown-btn {
     background: linear-gradient(135deg, #4361ee, #3a0ca3);
     border: none;
     padding: 10px 16px;
@@ -213,52 +212,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     align-items: center;
     gap: 5px;
     box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-    text-decoration: none;
-    font-size: 0.9rem;
   }
-  
-  nav .nav-buttons button:hover {
+  nav .nav-buttons button:hover,
+  nav .dropdown-btn:hover {
     background: linear-gradient(135deg, #3a0ca3, #4361ee);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
   }
-  
-  .main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 20px 40px;
+  .dropdown { 
+    position: relative; 
+    display: inline-block; 
   }
-  
-  .container {
-    width: 100%;
-    max-width: 480px;
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
     background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    position: relative;
-    z-index: 1;
-    animation: slideUp 0.8s ease-out;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 9999;
+    overflow: hidden;
+    margin-top: 5px;
     border: 1px solid rgba(67, 97, 238, 0.1);
   }
+  .dropdown-content a {
+    color: #2c3e50;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(67, 97, 238, 0.05);
+  }
+  .dropdown-content a:hover { 
+    background: rgba(67, 97, 238, 0.05);
+    padding-left: 20px;
+    color: #4361ee;
+  }
+  .dropdown-content a:last-child {
+    border-bottom: none;
+  }
+  .dropdown:hover .dropdown-content { 
+    display: block; 
+    animation: fadeIn 0.3s ease;
+  }
 
-  .container::before {
+  /* Main Content */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px;
+    padding: 0;
+  }
+
+  .registration-container {
+     background: rgba(243, 253, 246, 0.95);
+    box-shadow: 0 4px 20px rgba(71, 71, 71, 0.23);
+    padding: 40px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    animation: slideUp 0.8s ease-out;
+    border: 1px solid rgba(67, 97, 238, 0.1);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  .registration-container::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 0px;
     background: linear-gradient(90deg, #4361ee, #3a0ca3);
   }
-  
-  h2 { 
-    text-align: center; 
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
     color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 28px;
     font-weight: 700;
     position: relative;
   }
@@ -274,10 +313,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     background: linear-gradient(90deg, #4361ee, #3a0ca3);
     border-radius: 2px;
   }
-  
+
+  /* Two-column grid layout for form */
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    flex: 1;
+    position: relative;
+  }
+
   .input-group {
     position: relative;
     margin-bottom: 20px;
+  }
+
+  .input-group.full-width {
+    grid-column: 1 / -1;
   }
 
   .input-group i {
@@ -288,41 +343,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     color: #4361ee;
     z-index: 1;
   }
-  
-  label { 
-    display: block; 
-    margin-bottom: 8px; 
-    color: #2c3e50; 
-    font-weight: 600; 
-    font-size: 0.9rem;
-  }
-  
-  input, textarea {
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
     width: 100%;
     padding: 12px 15px 12px 45px;
-    margin-bottom: 15px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     background: #f8f9fa;
     color: #2c3e50;
     font-size: 16px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: all 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  
-  input:focus, textarea:focus {
+
+  input:focus,
+  select:focus,
+  textarea:focus {
     outline: none;
     border-color: #4361ee;
     background: #fff;
     box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
   }
-  
+
+  input::placeholder {
+    color: #95a5a6;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234361ee'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    background-color: #f8f9fa;
+  }
+
+  select option {
+    color: #2c3e50;
+    background: #fff;
+  }
+
   textarea {
     resize: vertical;
-    min-height: 100px;
-    padding-left: 15px;
+    min-height: 120px;
   }
-  
+
   button[type="submit"] {
     width: 100%;
     padding: 14px;
@@ -341,25 +412,162 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     margin-top: 10px;
     box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
   }
-  
-  button[type="submit"]:hover { 
+
+  button[type="submit"]:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
   }
-  
-  .error { 
-    color: #c0392b; 
-    text-align: center; 
-    margin-bottom: 20px; 
-    font-weight: 600; 
-    word-wrap: break-word;
-    animation: shake 0.5s ease;
+
+  .error, .success {
     background: rgba(231, 76, 60, 0.1);
     border-left: 4px solid #e74c3c;
     padding: 12px;
     border-radius: 8px;
-  
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    word-wrap: break-word;
+    animation: shake 0.5s ease;
   }
+
+  .success {
+    background: rgba(46, 204, 113, 0.1);
+    border-left: 4px solid #2ecc71;
+    color: #27ae60;
+  }
+
+  .error {
+    color: #c0392b;
+  }
+
+  .link { 
+    margin-top: 25px; 
+    text-align: center; 
+    font-size: 15px;
+    color: #7f8c8d;
+  }
+  .link a { 
+    color: #4361ee; 
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #4361ee;
+    transition: width 0.3s ease;
+  }
+  .link a:hover::after {
+    width: 100%;
+  }
+
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+  }
+  .modal-content {
+    background: #fff;
+    color: #2c3e50;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    overflow-wrap: break-word;
+    animation: modalSlideIn 0.4s ease;
+    border: 1px solid rgba(67, 97, 238, 0.1);
+    position: relative;
+  }
+
+  .modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4361ee, #3a0ca3);
+  }
+
+  .modal-content h3 { 
+    margin-bottom: 15px; 
+    font-size: 24px;
+    color: #2c3e50;
+  }
+  .modal-content p { 
+    margin: 10px 0; 
+    font-size: 16px;
+    line-height: 1.5;
+    color: #5a6c7d;
+  }
+  .modal-content button {
+    margin-top: 10px;
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+  }
+  .modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
+  }
+
+  /* Animations */
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+
+  @keyframes slideUp { 
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    } 
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+
   /* Footer Styles */
   footer {
     width: 100%;
@@ -459,137 +667,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     font-size: 0.9rem;
   }
 
-
-  /* Success Modal */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(3px);
-    animation: fadeIn 0.3s;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    overflow-wrap: break-word;
-    animation: modalSlideIn 0.4s ease;
-    border: 1px solid rgba(67, 97, 238, 0.1);
-    position: relative;
-  }
-
-  .modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #4361ee, #3a0ca3);
-  }
-  
-  .modal-content h3 { 
-    margin-bottom: 15px; 
-    font-size: 24px;
-    color: #2c3e50;
-  }
-  
-  .modal-content p { 
-    margin: 10px 0; 
-    font-size: 16px;
-    line-height: 1.5;
-    color: #5a6c7d;
-  }
-  
-  .close-btn {
-    background: linear-gradient(135deg, #4361ee, #3a0ca3);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-    margin-top: 15px;
-  }
-  
-  .close-btn:hover { 
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
-  }
-
-  /* Animations */
-  @keyframes fadeIn { 
-    from { opacity: 0; } 
-    to { opacity: 1; } 
-  }
-  
-  @keyframes slideUp { 
-    from { 
-      opacity: 0; 
-      transform: translateY(30px); 
-    } 
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    } 
-  }
-
-  @keyframes modalSlideIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9) translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
-  }
-
-  /* Responsive adjustments */
+  /* Responsive Design */
   @media (max-width: 768px) {
-    nav {
-      padding: 15px 20px;
+    .form-row {
+      flex-direction: column;
+      gap: 0;
     }
     
-    .container {
-      max-width: 95%;
-      padding: 25px 20px;
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .registration-container {
+      padding: 30px 20px;
+      width: 95%;
     }
     
     h2 {
-      font-size: 24px;
+      font-size: 22px;
     }
     
-    .main-content {
-      padding: 90px 15px 30px;
-    }
-  }
-
-  @media (max-width: 500px) {
-    nav { 
-      flex-direction: column; 
-      gap: 10px; 
+    nav {
+      flex-direction: column;
+      gap: 10px;
       padding: 15px 20px;
     }
     
@@ -598,17 +698,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       justify-content: center;
     }
     
-    h2 {
-      font-size: 22px;
+    .modal-content {
+      padding: 20px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .registration-container {
+      max-width: 100%;
+      margin: 0 10px;
     }
     
-    input, textarea {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select,
+    textarea {
       padding: 10px 12px 10px 40px;
       font-size: 14px;
     }
     
-    .modal-content {
-      padding: 20px;
+    button[type="submit"] {
+      padding: 12px;
+      font-size: 14px;
+    }
+    
+    .footer-links {
+      gap: 15px;
     }
   }
 </style>
@@ -637,7 +753,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </nav>
 
 <div class="main-content">
-  <div class="container">
+  <div class="registration-container">
     <h2>Mentor Registration</h2>
 
     <?php if (isset($error) && !empty($error)): ?>
@@ -645,44 +761,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <form method="POST" action="">
-      <div class="input-group">
-        <i class="fas fa-user"></i>
-        <input type="text" name="full_name" placeholder="Full Name *" required />
+      <!-- Row 1: Full Name and Email side by side -->
+      <div class="form-row">
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="full_name" placeholder="Full Name *" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="email" placeholder="Email Address *" required />
+          </div>
+        </div>
       </div>
 
-      <div class="input-group">
-        <i class="fas fa-envelope"></i>
-        <input type="email" name="email" placeholder="Email Address *" required />
+      <!-- Row 2: Phone and University side by side -->
+      <div class="form-row">
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="text" name="phone" placeholder="Phone Number (Optional)" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-university"></i>
+            <input type="text" name="university" placeholder="University *" required />
+          </div>
+        </div>
       </div>
 
-      <div class="input-group">
-        <i class="fas fa-phone"></i>
-        <input type="text" name="phone" placeholder="Phone Number (Optional)" />
+      <!-- Row 3: Subject and Recent Profession side by side -->
+      <div class="form-row">
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-book"></i>
+            <input type="text" name="subject" placeholder="Subject/Specialization *" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <i class="fas fa-briefcase"></i>
+            <input type="text" name="recent_profession" placeholder="Recent Profession" />
+          </div>
+        </div>
       </div>
 
-      <div class="input-group">
-        <i class="fas fa-university"></i>
-        <input type="text" name="university" placeholder="University *" required />
-      </div>
-
-      <div class="input-group">
-        <i class="fas fa-book"></i>
-        <input type="text" name="subject" placeholder="Subject/Specialization *" required />
-      </div>
-
-      <div class="input-group">
-        <i class="fas fa-briefcase"></i>
-        <input type="text" name="recent_profession" placeholder="Recent Profession" />
-      </div>
-
-      <div class="input-group">
-        <label>Bio</label>
-        <textarea name="bio" placeholder="Tell us about yourself, achievements, and mission..."></textarea>
-      </div>
-
+      <!-- Row 4: Location (full width) -->
       <div class="input-group">
         <i class="fas fa-map-marker-alt"></i>
         <input type="text" name="location" placeholder="Location (City, Area, Online, etc.)" />
+      </div>
+
+      <!-- Row 5: Bio (full width) -->
+      <div class="input-group">
+        <textarea name="bio" placeholder="Tell us about yourself, achievements, and mission..."></textarea>
       </div>
 
       <button type="submit"><i class="fas fa-user-plus"></i> Complete Registration</button>
@@ -701,34 +836,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <i class="fas fa-robot"></i>FutureBot
-      </div>
-      
-      <div class="footer-links">
-        <a href="index.php">Home</a>
-        <a href="about.php">About Us</a>
-         <a href="privacy.php">Privacy Policy</a>
-        <a href="terms.php">Terms of Service</a>
-        <a href="contact.php">Contact Us</a>
-      </div>
-      
-      <div class="footer-social">
-        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2024 FutureBot. All rights reserved. | Empowering students with AI-driven career guidance</p>
-      </div>
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <i class="fas fa-robot"></i>FutureBot
     </div>
-  </footer>
-
+    
+    <div class="footer-links">
+      <a href="index.php">Home</a>
+      <a href="about.php">About Us</a>
+      <a href="privacy.php">Privacy Policy</a>
+      <a href="terms.php">Terms of Service</a>
+      <a href="contact.php">Contact Us</a>
+    </div>
+    
+    <div class="footer-social">
+      <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 FutureBot. All rights reserved. | Empowering students with AI-driven career guidance</p>
+    </div>
+  </div>
+</footer>
 
 <script>
 function closeModal() {
