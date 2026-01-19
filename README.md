@@ -79,7 +79,7 @@ Companies find skilled and potential candidates.
 - XAMPP / Apache
 
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1. Clone the repository:
 ```bash
@@ -107,14 +107,14 @@ Update db.php with database credentials
 
 http://localhost/futurebot
 
-🎯 Objectives
+## Objectives
 
 -Guide students toward better career decisions
 -Enable mentors to support learners
 -Help companies find suitable talent
 -Reduce the gap between academia and industry
 
-🚀 Future Improvements
+## Future Improvements
 
 -AI-based career recommendations
 -Real-time chat system
@@ -122,7 +122,7 @@ http://localhost/futurebot
 -Skill assessment tests
 -Mobile-friendly UI
 
-📄 License
+## License
 
 This project is developed for educational purposes only.
 
