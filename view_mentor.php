@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 
-// Check if mentor ID is provided and valid
+// Check if  mentor ID is provided and valid
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     die("<div style='padding: 20px; text-align: center; font-family: Arial; color: red;'>Mentor ID missing. Please provide a valid mentor ID.</div>");
 }
@@ -15,7 +15,7 @@ if ($mentor_id <= 0) {
 
 // Fetch mentor details from mentor_details and users with prepared statement
 $sql = "
-    SELECT u.full_name, u.email, u.phone, u.profile_pic, u.bio,
+    SELECT u.full_name,  u.email, u.phone, u.profile_pic, u.bio,
            md.university, md.subject, md.recent_profession, md.location, md.demo_link, md.demo_schedule
     FROM mentor_details md
     INNER JOIN users u ON md.user_id = u.user_id
@@ -35,7 +35,8 @@ if ($result->num_rows == 0) {
     die("<div style='padding: 20px; text-align: center; font-family: Arial;'>Mentor not found. The requested mentor profile does not exist.</div>");
 }
 
-$mentor = $result->fetch_assoc();
+$mentor = $result->fetch_assoc(); 
+
 
 // Validate that we have the essential data
 if (!$mentor || !isset($mentor['full_name'])) {
@@ -66,6 +67,8 @@ if (!empty($mentor['profile_pic'])) {
 
 $demo_link = $mentor['demo_link'] ?? '';
 $demo_schedule = $mentor['demo_schedule'] ?? '';
+
+
 
 // Close statement and connection
 $stmt->close();
@@ -1128,6 +1131,8 @@ $conn->close();
             preventHorizontalOverflow();
             window.addEventListener('resize', preventHorizontalOverflow);
         });
+
+        
     </script>
 </body>
 </html>
