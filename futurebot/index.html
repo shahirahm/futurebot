@@ -1,0 +1,252 @@
+ <!-- Course Suggestions -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="section-title">📚 Course Suggestions</h3>
+      </div>
+      
+      <?php if (count($all_courses) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($all_courses as $course): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($course) ?></div>
+              <a href="course_suggestions.php?career=<?= urlencode($course) ?>" class="item-link">
+                Explore Course <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-book-open"></i>
+          <p>No course suggestions available yet.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <!-- Project Suggestions -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h3 class="section-title">💻 Project Idea Suggestions</h3>
+      </div>
+      
+      <?php if (count($all_projects) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($all_projects as $project): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($project) ?></div>
+              <a href="project_pathway.php?career=<?= urlencode($project) ?>" class="item-link">
+                View Project <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-code"></i>
+          <p>No project suggestions available yet.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <!-- ... rest of your content sections ... -->
+
+   <!-- Recommended Books -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <h3 class="section-title">📒 Recommended Books</h3>
+      </div>
+      
+      <?php if (count($recommended_books) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($recommended_books as $book): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($book['title']) ?></div>
+              <a href="<?= htmlspecialchars($book['link']) ?>" target="_blank" class="item-link">
+                Read Book <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-book"></i>
+          <p>No recommended books found for your skills.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <!-- Earning Opportunities -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <h3 class="section-title">💰 Skill-Based Earning Opportunities</h3>
+      </div>
+      
+      <?php if (count($recommended_earnings) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($recommended_earnings as $earning): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($earning['title']) ?></div>
+              <a href="<?= htmlspecialchars($earning['link']) ?>" target="_blank" class="item-link">
+                Explore Opportunity <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-search-dollar"></i>
+          <p>No earning opportunities found for your skills at the moment.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+   <!-- Project Showcase Gallery -->
+<div class="section-card">
+  <div class="section-header">
+    <div class="section-icon">
+      <i class="fas fa-images"></i>
+    </div>
+    <h3 class="section-title">🖼️ Project Showcase Gallery</h3>
+  </div>
+  
+  <div style="text-align: center; padding: 40px 20px;">
+    <a href="submit_project.php" class="btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+      <i class="fas fa-plus"></i> Submit New Project
+    </a>
+    <p style="color: #5a6c7d; margin-top: 15px; font-size: 0.95rem;">
+      Share your completed projects with the community
+    </p>
+  </div>
+</div>
+
+
+  
+
+    <!-- Micro Internships -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-briefcase"></i>
+        </div>
+        <h3 class="section-title">💼 Micro-Internship Opportunities</h3>
+      </div>
+      
+      <?php if (count($micro_internships) > 0): ?>
+        <div class="internship-grid">
+          <?php foreach ($micro_internships as $internship): ?>
+            <div class="internship-card">
+              <h4 class="internship-title"><?= htmlspecialchars($internship['title']) ?></h4>
+              <div class="internship-meta">
+                <?= htmlspecialchars($internship['company_name']) ?> • 
+                <?= intval($internship['duration_hours']) ?> hours • 
+                <?= htmlspecialchars($internship['location_type']) ?>
+              </div>
+              <p class="internship-description"><?= htmlspecialchars($internship['description']) ?></p>
+              <a href="internship_details.php?id=<?= urlencode($internship['id']) ?>" class="btn-primary">
+                <i class="fas fa-eye"></i> View Details
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-briefcase"></i>
+          <p>No micro-internships matched your skills at the moment.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    
+
+    <!-- Mentor Suggestions -->
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3 class="section-title">🧑‍💼 Mentor Suggestions</h3>
+      </div>
+      
+      <?php if (count($mentor_suggestions) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($mentor_suggestions as $mentor): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($mentor['name']) ?></div>
+              <div style="color: #5a6c7d; font-size: 0.9rem; margin-bottom: 10px;">
+                Expertise: <?= htmlspecialchars($mentor['expertise_skills']) ?>
+              </div>
+              <a href="mentor_suggestions.php?mentor_id=<?= urlencode($mentor['mentor_id']) ?>" class="btn-primary">
+                <i class="fas fa-user-plus"></i> Connect
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-user-tie"></i>
+          <p>No mentors matched your skills right now.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+
+    <!-- Additional Skills -->
+    <?php
+      $related_skills_map = [
+        "Python" => ["Data Science", "Machine Learning", "Flask", "Web Development"],
+        "Data Science" => ["Python", "Machine Learning", "Deep Learning", "SQL"],
+        "Java" => ["OOP", "Spring Framework", "Android"],
+        "Javascript" => ["React", "Node.js", "Web Development"],
+        "Php" => ["SQL", "Web Development", "Laravel"],
+        "Sql" => ["Data Science", "Database Design", "ETL"],
+        "React" => ["Javascript", "Next.js", "Frontend"],
+        "Web Development" => ["HTML", "CSS", "Javascript", "PHP"]
+      ];
+
+      $matched_skills = [];
+      foreach ($user_skills as $user_skill) {
+        $key = ucfirst(strtolower($user_skill));
+        if (isset($related_skills_map[$key])) {
+          $matched_skills = array_merge($matched_skills, $related_skills_map[$key]);
+        }
+      }
+      $matched_skills = array_unique(array_diff($matched_skills, $user_skills));
+    ?>
+
+    <div class="section-card">
+      <div class="section-header">
+        <div class="section-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h3 class="section-title">🧠 Matching Skill Suggestions</h3>
+      </div>
+      
+      <?php if (count($matched_skills) > 0): ?>
+        <div class="content-grid">
+          <?php foreach ($matched_skills as $matched_skill): ?>
+            <div class="content-item">
+              <div class="item-title"><?= htmlspecialchars($matched_skill) ?></div>
+              <a href="skill_develop.php?skill=<?= urlencode($matched_skill) ?>" class="item-link">
+                Develop Skill <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <div class="empty-state">
+          <i class="fas fa-lightbulb"></i>
+          <p>No additional matching skills found at this time.</p>
+        </div>
+      <?php endif; ?>
+    </div>
+  </div>
