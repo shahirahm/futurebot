@@ -15,6 +15,9 @@ $mentorData = [
     ['id' => 10, 'mentor' => 'Anna Queen', 'name' => 'Science Data Academy', 'email' => 'anna.queen@datascienceacademy.com', 'phone' => '+8804455667788', 'details' => 'Educator and mentor for aspiring data scientists.'],
 ];
 
+
+
+
 // Get mentor ID
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -109,6 +112,9 @@ if (!$mentor) {
   </style>
 </head>
 <body>
+
+
+
 
 <nav>
   <a href="skill_develop.php" aria-label="Back to Skill Develop">← Back to Skill Develop</a>
