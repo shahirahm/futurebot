@@ -34,6 +34,9 @@ if ($check_columns) {
     $check_columns->free();
 }
 
+
+
+
 // Build query based on available columns
 $columns_to_select = ["md.user_id", "md.company_name", "md.location", "md.rating", "u.full_name", "u.email"];
 
@@ -63,6 +66,8 @@ $query = "
 ";
 
 $result = $conn->query($query);
+
+
 
 // Check if query was successful
 if ($result) {
