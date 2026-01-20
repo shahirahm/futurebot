@@ -1,6 +1,8 @@
 <?php
 session_start();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -289,6 +291,9 @@ session_start();
     </style>
 </head>
 <body>
+
+
+
     <!-- Navigation -->
     <nav>
         <div class="logo">
@@ -341,6 +346,9 @@ session_start();
         </div>
     </div>
 
+
+
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -371,6 +379,8 @@ session_start();
         </div>
     </footer>
 
+
+    
     <script>
         function goBack() {
             if (document.referrer && document.referrer.includes(window.location.host)) {
