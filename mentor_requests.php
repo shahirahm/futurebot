@@ -4,6 +4,8 @@ require_once 'db.php';
 
 $mentor_name = $_SESSION['username'] ?? 'Unknown Mentor';
 
+
+
 // Fetch only necessary fields
 $result = $conn->query("SELECT id, student_name, location, institute, subject, contact FROM mentor_requests ORDER BY created_at DESC");
 ?>

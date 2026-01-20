@@ -7,8 +7,15 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit;
 }
 
+<<<<<<< HEAD
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+=======
+
+
+$error = '';
+$success = '';
+>>>>>>> 3a53d640d30dfc9fadbba3f0c744b5a4c85812dc
 
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
@@ -59,6 +66,7 @@ function sendApprovalEmail($toEmail, $toName, $status, $companyId = null) {
     }
 }
 
+<<<<<<< HEAD
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['company_id'], $_POST['action'])) {
     $id = (int) $_POST['company_id'];
     $action = $_POST['action'];
@@ -79,6 +87,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['company_id'], $_POST[
     if ($companyEmail && $companyName) {
         $emailSent = sendApprovalEmail($companyEmail, $companyName, $status, $status === 'approved' ? $id : null);
         echo "<script>alert('Company has been $status. " . ($emailSent ? "Email sent." : "Email failed.") . "');</script>";
+=======
+
+
+// Handle post deletion
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post'])) {
+    $post_id = $_POST['post_id'];
+    
+    $stmt = $conn->prepare("DELETE FROM mentor_posts WHERE post_id = ?");
+    if ($stmt) {
+        $stmt->bind_param("i", $post_id);
+        if ($stmt->execute()) {
+            $success = "Post deleted successfully!";
+        } else {
+            $error = "Error deleting post: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        $error = "Database error: " . $conn->error;
+>>>>>>> 3a53d640d30dfc9fadbba3f0c744b5a4c85812dc
     }
 
     echo "<script>window.location.href = 'admin_company_approvals.php';</script>";

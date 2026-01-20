@@ -2,6 +2,10 @@
 session_start();
 require_once 'db.php';
 
+
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'])) {
     $request_id = intval($_POST['request_id']);
 

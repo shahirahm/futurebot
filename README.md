@@ -1,9 +1,10 @@
 # FutureBot
 
+## Description
 FutureBot is a **career guidance and talent connection platform** that connects **Students, Mentors, and Companies** in a single system.  
 The goal of FutureBot is to help students choose the right career path, get expert guidance, and connect with industry opportunities.
 
----
+
 
 ## Project Overview
 
@@ -82,47 +83,36 @@ Companies find skilled and potential candidates.
 ## Installation & Setup
 
 1. Clone the repository:
-```bash
-git clone https://github.com/your-username/futurebot.git
-
-
+   git clone https://github.com/your-username/futurebot.git
 2. Move project to XAMPP htdocs:
-
-C:/xampp/htdocs/futurebot
-
-
+   C:/xampp/htdocs/futurebot
 3. Create a database:
-
-Open phpMyAdmin
-
-Create database futurebot
-
-Import the .sql file
-
+   Open phpMyAdmin
+   Create database futurebot
+   Import the .sql file
 4. Configure database connection:
-
-Update db.php with database credentials
-
+   Update db.php with database credentials
 5. Run the project:
+   http://localhost/futurebot
 
-http://localhost/futurebot
 
 ## Objectives
 
--Guide students toward better career decisions
--Enable mentors to support learners
--Help companies find suitable talent
--Reduce the gap between academia and industry
+- Guide students toward better career decisions  
+- Enable mentors to support learners  
+- Help companies find suitable talent  
+- Reduce the gap between academia and industry  
 
 ## Future Improvements
 
--AI-based career recommendations
--Real-time chat system
--Admin dashboard
--Skill assessment tests
--Mobile-friendly UI
+- AI-based career recommendations  
+- Real-time chat system  
+- Admin dashboard  
+- Skill assessment tests  
+- Mobile-friendly UI  
 
 ## License
 
-This project is developed for educational purposes only.
-
+- Developed for **educational purposes only**  
+- Not for commercial use  
+- Free to study, modify, and share for learning purposes  

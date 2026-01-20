@@ -7,6 +7,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $action = $_POST['action'] ?? '';
     $mentor = $_POST['mentor'] ?? '';
 
+    
+
     // Validate inputs and action type
     if ($request_id && $action && $mentor && in_array($action, ['accept', 'reject'])) {
         // Get original request details
@@ -17,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $request = $result->fetch_assoc();
         $stmt->close();
 
+
+        
         if ($request) {
             // Set status to enum value 'accepted' or 'rejected'
             $status = ($action === 'accept') ? 'accepted' : 'rejected';
@@ -38,6 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 }
+
+
+
+
 
 header("Location: mentor_requests.php");
 exit;

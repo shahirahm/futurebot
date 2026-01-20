@@ -4,6 +4,9 @@ require_once 'db.php';
 
 $user_email = $_SESSION['user_email'] ?? null;
 
+
+
+
 // Get filter and sort options
 $book_name = $_GET['book_name'] ?? '';
 $sort = $_GET['sort'] ?? '';

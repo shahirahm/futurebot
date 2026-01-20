@@ -3,6 +3,9 @@ require_once 'db.php';
 
 // Removed session check for admin login
 
+
+
+
 $errors = [];
 $success = "";
 
@@ -32,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_book'])) {
             }
         }
     }
+
+
+
 
     // PDF upload handling
     $pdf_path = null;
@@ -68,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_book'])) {
         $stmt->close();
     }
 }
+
+
 
 // Handle deletion
 if (isset($_GET['delete_id']) && is_numeric($_GET['delete_id'])) {

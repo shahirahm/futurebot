@@ -7,6 +7,8 @@ if (!isset($_SESSION['user_email'])) {
     exit;
 }
 
+
+
 // Get user's skills from database
 $email = $_SESSION['user_email'];
 $stmt = $conn->prepare("SELECT skills FROM Users WHERE email=?");
@@ -17,6 +19,8 @@ $stmt->fetch();
 $stmt->close();
 
 $user_skills = explode(", ", $skills_str);
+
+
 
 // For simplicity, get mentors who match at least one skill
 $placeholders = implode(',', array_fill(0, count($user_skills), '?'));
@@ -31,6 +35,8 @@ foreach ($user_skills as $skill) {
     $params[] = $skill;
 }
 $sql .= implode(' OR ', $whereClauses);
+
+
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param($types, ...$params);

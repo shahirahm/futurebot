@@ -2,6 +2,8 @@
 session_start();
 require 'db.php';
 
+
+
 if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: admin_login.php');
     exit;
@@ -9,6 +11,8 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+
 
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
@@ -59,6 +63,8 @@ function sendApprovalEmail($toEmail, $toName, $status, $companyId = null) {
     }
 }
 
+
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['company_id'], $_POST['action'])) {
     $id = (int) $_POST['company_id'];
     $action = $_POST['action'];
@@ -84,6 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['company_id'], $_POST[
     echo "<script>window.location.href = 'admin_company_approvals.php';</script>";
     exit;
 }
+
+
 
 $result = $conn->query("SELECT * FROM companies WHERE status = 'pending'");
 ?>
@@ -144,6 +152,8 @@ $result = $conn->query("SELECT * FROM companies WHERE status = 'pending'");
     </style>
 </head>
 <body class="bg-light">
+
+
 
 <!-- Admin Panel Navbar -->
 <nav class="navbar navbar-expand-lg shadow">

@@ -2,6 +2,9 @@
 session_start();
 require_once 'db.php';
 
+
+
+
 if (!isset($_SESSION['admin_email'])) {
     header("Location: admin_login.php");
     exit;
@@ -15,6 +18,9 @@ $id = intval($_GET['id']);
 
 $errors = [];
 $success = "";
+
+
+
 
 // Fetch existing book info
 $stmt = $conn->prepare("SELECT * FROM books WHERE id=?");
@@ -73,6 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
