@@ -80,7 +80,7 @@ $default_steps = [
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f0 100%);
+             background: linear-gradient(135deg, #e6f8e8 0%, #e4f0e8 100%);
             color: #333;
             line-height: 1.6;
             min-height: 100vh;
@@ -88,7 +88,8 @@ $default_steps = [
         }
 
         .navbar {
-            background-color: #fff;
+          background: rgba(243, 253, 246, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.33);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;

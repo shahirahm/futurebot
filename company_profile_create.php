@@ -100,25 +100,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #4361ee;
-            --dark-blue: #3a0ca3;
-            --light-blue: #4cc9f0;
-            --very-light-blue: #f8faff;
-            --purple: #7209b7;
-            --light-purple: #f72585;
-            --white: #ffffff;
-            --success: #289842;
-            --danger: #e63946;
-            --warning: #fca311;
-            --gray: #6c757d;
-            --light-gray: #f8f9fa;
-            --text-dark: #2c3e50;
-            --text-light: #64748b;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
-            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
-            --gradient-light: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
-            --gradient-hover: linear-gradient(135deg, #3a0ca3 0%, #7209b7 100%);
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #e2e8f0;
+            --border: #cbd5e1;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --transition: all 0.2s ease;
         }
 
         * {
@@ -127,432 +125,392 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-sizing: border-box;
         }
 
-        html {
-            overflow-x: hidden;
-        }
-
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: var(--text-dark);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #e6f8e8 0%, #e4f0e8 100%);
+            color: #334155;
+            line-height: 1.5;
             min-height: 100vh;
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
         }
 
-        /* Animated Background */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+                        background: rgba(243, 253, 246, 0.95);
         }
 
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(67, 97, 238, 0.03);
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .circle:nth-child(1) {
-            width: 60px;
-            height: 60px;
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .circle:nth-child(2) {
-            width: 100px;
-            height: 100px;
-            top: 70%;
-            left: 80%;
-            animation-delay: 2s;
-        }
-
-        .circle:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            top: 40%;
-            left: 85%;
-            animation-delay: 4s;
-        }
-
-        .circle:nth-child(4) {
-            width: 80px;
-            height: 80px;
-            top: 80%;
-            left: 15%;
-            animation-delay: 6s;
-        }
-
-        .circle:nth-child(5) {
-            width: 50px;
-            height: 50px;
-            top: 20%;
-            left: 70%;
-            animation-delay: 8s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            25% {
-                transform: translateY(-15px) translateX(8px);
-            }
-            50% {
-                transform: translateY(8px) translateX(-12px);
-            }
-            75% {
-                transform: translateY(-12px) translateX(-8px);
-            }
-        }
-
-        /* Navigation Bar */
+        /* Header/Navbar */
         .navbar {
-            background-color: var(--white);
-            padding: 1rem 2.5rem;
-            border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+            background: rgba(243, 253, 246, 0.95);
+            box-shadow: 0 4px 20px rgba(71, 71, 71, 0.23);
+            border-bottom: 1px solid var(--gray);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: var(--shadow);
-            position: sticky;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            padding: 0 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            text-decoration: none;
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
         }
 
         .logo-text {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--dark);
+            letter-spacing: -0.025em;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-blue);
-            background: rgba(67, 97, 238, 0.05);
-            transform: translateY(-1px);
-            text-decoration: none;
-        }
-
-        .nav-link.btn-primary {
-            background: var(--gradient);
-            color: white;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-        }
-
-        .nav-link.btn-primary:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.4);
-        }
-
-        /* Main Content */
+        /* Main Content Layout */
         .main-content {
-            max-width: 900px;
-            margin: 2.5rem auto;
-            padding: 0 1.25rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .create-card {
-            background: var(--white);
-            border-radius: 20px;
+        /* Sidebar (matching company registration) */
+        .sidebar {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
             box-shadow: var(--shadow);
-            padding: 2.5rem;
-            animation: fadeIn 0.8s ease-in-out;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(67, 97, 238, 0.1);
-            backdrop-filter: blur(10px);
+            height: fit-content;
+            border: 1px solid var(--gray);
         }
 
-        .create-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-header {
+        .sidebar-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
-        .page-icon {
+        .sidebar-icon {
             width: 80px;
             height: 80px;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 2rem;
-            margin: 0 auto 1.5rem;
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.3);
+            margin: 0 auto 1rem;
         }
 
-        .page-title {
-            color: var(--text-dark);
-            font-size: 2.25rem;
+        .sidebar-title {
+            font-size: 1.5rem;
             font-weight: 700;
+            color: var(--dark);
             margin-bottom: 0.5rem;
         }
 
-        .page-subtitle {
-            color: var(--text-light);
-            font-size: 1.1rem;
+        .sidebar-subtitle {
+            color: var(--secondary);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        .sidebar-info {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item i {
+            color: var(--primary);
+            width: 16px;
+        }
+
+        /* Form Content */
+        .content {
+                        background: rgba(243, 253, 246, 0.95);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray);
+        }
+
+        .content-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .content-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0;
+        }
+
+        .content-header h2 i {
+            color: var(--primary);
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 1rem 1.25rem;
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid transparent;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .alert i {
+            margin-top: 0.125rem;
+        }
+
+        .alert-danger {
+            background: #fef2f2;
+            border-color: var(--danger);
+            color: #991b1b;
         }
 
         /* Form Styles */
         .form-section {
             margin-bottom: 2.5rem;
             padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(67, 97, 238, 0.1);
+            border-bottom: 1px solid var(--gray);
         }
 
         .section-title {
-            color: var(--dark-blue);
-            font-size: 1.5rem;
+            color: var(--dark);
+            font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid rgba(67, 97, 238, 0.1);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray);
             display: flex;
             align-items: center;
             gap: 0.75rem;
         }
 
         .section-title i {
-            color: var(--primary-blue);
+            color: var(--primary);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
         }
 
-        .form-label {
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            display: block;
+        .form-group.full-width {
+            grid-column: 1 / -1;
         }
 
-        .required::after {
-            content: ' *';
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-label.required::after {
+            content: " *";
             color: var(--danger);
         }
 
         .form-control {
             width: 100%;
-            padding: 0.875rem 1rem;
-            border: 2px solid rgba(67, 97, 238, 0.1);
-            border-radius: 12px;
-            background: var(--white);
-            color: var(--text-dark);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: white;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
-            transform: translateY(-1px);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
         }
 
-        .form-control::placeholder {
-            color: var(--text-light);
-            opacity: 0.7;
+        .form-control:hover {
+            border-color: #94a3b8;
         }
 
         textarea.form-control {
-            resize: vertical;
             min-height: 100px;
+            resize: vertical;
         }
 
-        .file-input-wrapper {
-            position: relative;
-        }
-
-        .file-input-wrapper input[type="file"] {
-            padding: 0.875rem 1rem;
-            border: 2px dashed rgba(67, 97, 238, 0.2);
-            border-radius: 12px;
-            background: rgba(67, 97, 238, 0.02);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .file-input-wrapper input[type="file"]:hover {
-            border-color: var(--primary-blue);
-            background: rgba(67, 97, 238, 0.05);
-        }
-
-        .file-input-wrapper input[type="file"]::file-selector-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
+        /* File Upload */
+        .file-upload-area {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            background: var(--light);
+            transition: var(--transition);
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 1rem;
         }
 
-        .file-input-wrapper input[type="file"]::file-selector-button:hover {
-            background: var(--gradient-hover);
+        .file-upload-area:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .file-upload-area i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .file-upload-text {
+            color: var(--dark);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .file-upload-hint {
+            color: var(--secondary);
+            font-size: 0.75rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
         }
 
+        .btn-secondary:hover {
+            background: var(--light);
+            border-color: var(--primary);
+        }
+
+        .btn-block {
+            width: 100%;
+            padding: 0.875rem;
+            font-size: 0.9375rem;
+        }
+
+        /* Form Actions */
         .form-actions {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
         }
 
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
-            display: inline-flex;
+        /* Nav Links (for navbar) */
+        .nav-links {
+            display: flex;
+            gap: 1rem;
             align-items: center;
-            gap: 0.75rem;
-            flex: 1;
-            justify-content: center;
         }
 
-        .btn-primary:hover {
-            background: var(--gradient-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--white);
-            color: var(--text-dark);
-            border: 2px solid rgba(67, 97, 238, 0.2);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .nav-link {
+            color: var(--secondary);
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex: 1;
-            justify-content: center;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(67, 97, 238, 0.05);
-            border-color: var(--primary-blue);
-            transform: translateY(-2px);
-            text-decoration: none;
-            color: var(--text-dark);
-        }
-
-        /* Alert Styles */
-        .alert {
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            border: none;
+            font-size: 0.875rem;
             font-weight: 500;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
         }
 
-        .alert-danger {
-            background: rgba(230, 57, 70, 0.1);
-            color: #dc3545;
-            border-left: 4px solid #dc3545;
+        .nav-link:hover {
+            color: var(--primary);
+            background: var(--light);
         }
 
-        /* Footer Styles */
+        /* Footer - Updated to match mentor_profile.php */
         footer {
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             padding: 2rem 1.25rem;
-            border-top: 1px solid rgba(67, 97, 238, 0.08);
+            border-top: 1px solid var(--gray);
             box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
             margin-top: 4rem;
-            backdrop-filter: blur(10px);
         }
 
         .footer-content {
@@ -570,7 +528,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             gap: 0.75rem;
             font-size: 1.3rem;
             font-weight: bold;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -583,32 +541,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .footer-links a {
-            color: var(--text-light);
+            color: var(--secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: var(--transition);
             font-size: 0.9rem;
         }
 
         .footer-links a:hover {
-            color: var(--primary-blue);
+            color: var(--primary);
             transform: translateY(-1px);
-        }
-
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .footer-links a:hover::after {
-            width: 100%;
         }
 
         .footer-social {
@@ -623,69 +565,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             width: 36px;
             height: 36px;
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border-radius: 50%;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
             font-size: 0.9rem;
         }
 
         .footer-social a:hover {
             transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.35);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 1.25rem;
-            border-top: 1px solid rgba(67, 97, 238, 0.08);
+            border-top: 1px solid rgba(37, 99, 235, 0.08);
             width: 100%;
-            color: var(--text-light);
+            color: var(--secondary);
             font-size: 0.85rem;
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 1.25rem;
-            }
-            
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
+        /* Responsive */
+        @media (max-width: 1024px) {
             .main-content {
-                margin: 1.5rem auto;
-                padding: 0 1rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             
-            .create-card {
-                padding: 2rem 1.5rem;
-                border-radius: 16px;
+            .sidebar {
+                order: 2;
             }
             
-            .page-title {
-                font-size: 1.75rem;
+            .content {
+                order: 1;
             }
+        }
 
-            .page-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.75rem;
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
             }
             
-            .form-row {
+            .sidebar, .content {
+                padding: 1.5rem;
+            }
+            
+            .form-grid {
                 grid-template-columns: 1fr;
             }
             
             .form-actions {
                 flex-direction: column;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
             }
             
             .footer-links {
@@ -695,69 +632,130 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         @media (max-width: 480px) {
-            .page-title {
+            .sidebar, .content {
+                padding: 1rem;
+            }
+            
+            .sidebar-icon {
+                width: 60px;
+                height: 60px;
                 font-size: 1.5rem;
             }
             
-            .create-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .navbar {
+            .btn {
                 padding: 0.75rem 1rem;
+            }
+            
+            .footer-links {
                 flex-direction: column;
+                align-items: center;
                 gap: 1rem;
             }
-
-            .logo-icon {
-                width: 35px;
-                height: 35px;
+            
+            .nav-links {
+                gap: 0.5rem;
             }
-
-            .section-title {
-                font-size: 1.25rem;
+            
+            .nav-link {
+                padding: 0.5rem;
+                font-size: 0.8rem;
             }
+        }
+
+        /* Form Validation */
+        .form-control:invalid:not(:focus) {
+            border-color: var(--danger);
+        }
+
+        .form-control:valid:not(:focus):not(:placeholder-shown) {
+            border-color: var(--success);
+        }
+
+        /* Helper Text */
+        .helper-text {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--secondary);
+            margin-top: 0.25rem;
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="background-animation">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <div class="logo">
-            <div class="logo-icon">
-                <i class="fas fa-robot"></i>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.php" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="logo-text">FutureBot</div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="company_dashboard.php" class="nav-link">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="company_login.php" class="nav-link">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
             </div>
-            <div class="logo-text">FutureBot</div>
         </div>
-        
-        <div class="nav-links">
-            <a href="index.php" class="nav-link">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <a href="company_login.php" class="nav-link">
-                <i class="fas fa-sign-in-alt"></i> Login
-            </a>
-        </div>
-    </div>
+    </nav>
 
-    <!-- Main Content -->
     <div class="main-content">
-        <div class="create-card">
-            <div class="page-header">
-                <div class="page-icon">
+        <!-- Sidebar (Similar to company registration sidebar) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-icon">
                     <i class="fas fa-building"></i>
                 </div>
-                <h1 class="page-title">Create Company Profile</h1>
-                <p class="page-subtitle">Join FutureBot and showcase your company to potential candidates</p>
+                <h2 class="sidebar-title">Create Company Profile</h2>
+                <p class="sidebar-subtitle">Join FutureBot and showcase your company to potential candidates.</p>
+            </div>
+
+            <div class="sidebar-info">
+                <div class="info-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Create company profile</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-users"></i>
+                    <span>Access to student database</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Post internships & jobs</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics dashboard</span>
+                </div>
+            </div>
+
+            <div class="sidebar-info">
+                <div class="info-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span><strong>Requirements:</strong></span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Company information</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Valid email address</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure password</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Form Content -->
+        <main class="content">
+            <div class="content-header">
+                <h2><i class="fas fa-edit"></i> Company Details</h2>
             </div>
 
             <?php if ($error): ?>
@@ -775,45 +773,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         Company Information
                     </h3>
                     
-                    <div class="form-group">
-                        <label for="company_name" class="form-label required">Company Name</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control" required 
-                               placeholder="Enter your company name"
-                               value="<?= htmlspecialchars($_POST['company_name'] ?? '') ?>">
-                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="company_name" class="form-label required">Company Name</label>
+                            <input type="text" name="company_name" id="company_name" class="form-control" required 
+                                   placeholder="Enter company name"
+                                   value="<?= htmlspecialchars($_POST['company_name'] ?? '') ?>">
+                            <span class="helper-text">Official registered name of your company</span>
+                        </div>
 
-                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label required">Email Address</label>
+                            <input type="email" name="email" id="email" class="form-control" required 
+                                   placeholder="company@example.com"
+                                   value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                            <span class="helper-text">Official company email address</span>
+                        </div>
+
                         <div class="form-group">
                             <label for="start_year" class="form-label">Starting Year</label>
                             <input type="number" name="start_year" id="start_year" class="form-control" 
-                                   placeholder="e.g., 2020" min="1900" max="2030"
+                                   placeholder="e.g., 2020" min="1900" max="2024"
                                    value="<?= htmlspecialchars($_POST['start_year'] ?? '') ?>">
+                            <span class="helper-text">Year your company was founded</span>
                         </div>
+
                         <div class="form-group">
                             <label for="trade_license" class="form-label">Trade License</label>
                             <input type="text" name="trade_license" id="trade_license" class="form-control" 
                                    placeholder="Enter trade license number"
                                    value="<?= htmlspecialchars($_POST['trade_license'] ?? '') ?>">
+                            <span class="helper-text">Government issued trade license number</span>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email" class="form-label required">Email Address</label>
-                        <input type="email" name="email" id="email" class="form-control" required 
-                               placeholder="company@example.com"
-                               value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
-                    </div>
+                        <div class="form-group full-width">
+                            <label for="password" class="form-label required">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required 
+                                   placeholder="Create a secure password">
+                            <span class="helper-text">Minimum 8 characters with letters and numbers</span>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="password" class="form-label required">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" required 
-                               placeholder="Create a secure password">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address" class="form-label">Address</label>
-                        <textarea name="address" id="address" class="form-control" rows="3" 
-                                  placeholder="Enter your company's full address"><?= htmlspecialchars($_POST['address'] ?? '') ?></textarea>
+                        <div class="form-group full-width">
+                            <label for="address" class="form-label">Company Address</label>
+                            <textarea name="address" id="address" class="form-control" rows="3" 
+                                      placeholder="Full physical address of your company"><?= htmlspecialchars($_POST['address'] ?? '') ?></textarea>
+                            <span class="helper-text">Include street, city, state, and zip code</span>
+                        </div>
                     </div>
                 </div>
 
@@ -823,32 +828,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="fas fa-user-circle"></i>
                         Company Profile
                     </h3>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="bio" class="form-label">Company Bio</label>
+                            <textarea name="bio" id="bio" class="form-control" rows="4" 
+                                      placeholder="Describe your company's mission, values, and what makes you unique"><?= htmlspecialchars($_POST['bio'] ?? '') ?></textarea>
+                            <span class="helper-text">Brief description of your company (optional)</span>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="bio" class="form-label">Bio</label>
-                        <textarea name="bio" id="bio" class="form-control" rows="4" 
-                                  placeholder="Describe your company's mission, values, and what makes you unique"><?= htmlspecialchars($_POST['bio'] ?? '') ?></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" name="location" id="location" class="form-control" 
+                                   placeholder="Enter company location"
+                                   value="<?= htmlspecialchars($_POST['location'] ?? '') ?>">
+                            <span class="helper-text">City, State, Country</span>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="location" class="form-label">Location</label>
-                        <input type="text" name="location" id="location" class="form-control" 
-                               placeholder="Enter company location"
-                               value="<?= htmlspecialchars($_POST['location'] ?? '') ?>">
-                    </div>
+                        <div class="form-group">
+                            <label for="rating" class="form-label">Rating (0-5)</label>
+                            <input type="number" name="rating" id="rating" class="form-control" 
+                                   min="0" max="5" step="0.1" 
+                                   placeholder="0.0 to 5.0"
+                                   value="<?= htmlspecialchars($_POST['rating'] ?? '') ?>">
+                            <span class="helper-text">Company rating (optional)</span>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="facilities" class="form-label">Facilities</label>
-                        <textarea name="facilities" id="facilities" class="form-control" rows="3" 
-                                  placeholder="Describe company facilities and amenities"><?= htmlspecialchars($_POST['facilities'] ?? '') ?></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="rating" class="form-label">Rating (0 to 5)</label>
-                        <input type="number" name="rating" id="rating" class="form-control" 
-                               min="0" max="5" step="0.1" 
-                               placeholder="Enter rating between 0 and 5"
-                               value="<?= htmlspecialchars($_POST['rating'] ?? '') ?>">
+                        <div class="form-group full-width">
+                            <label for="facilities" class="form-label">Facilities</label>
+                            <textarea name="facilities" id="facilities" class="form-control" rows="3" 
+                                      placeholder="Describe company facilities and amenities"><?= htmlspecialchars($_POST['facilities'] ?? '') ?></textarea>
+                            <span class="helper-text">Office facilities, perks, etc. (optional)</span>
+                        </div>
                     </div>
                 </div>
 
@@ -858,32 +869,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <i class="fas fa-camera"></i>
                         Company Logo
                     </h3>
-
+                    
                     <div class="form-group">
-                        <label for="logo" class="form-label">Upload Company Logo</label>
-                        <div class="file-input-wrapper">
-                            <input type="file" name="logo" id="logo" accept=".jpg,.jpeg,.png,.gif" class="form-control" />
+                        <div class="file-upload-area" onclick="document.getElementById('logo').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <div class="file-upload-text">Click to upload company logo</div>
+                            <div class="file-upload-hint">JPG, JPEG, PNG, GIF (Max 5MB)</div>
+                            <input type="file" class="file-input" name="logo" id="logo" accept=".jpg,.jpeg,.png,.gif" />
                         </div>
-                        <small style="color: var(--text-light); font-size: 0.875rem; margin-top: 0.5rem; display: block;">
-                            Accepted formats: JPG, JPEG, PNG, GIF. Maximum file size: 5MB.
-                        </small>
+                        <div id="file-name" class="helper-text" style="margin-top: 0.5rem;"></div>
                     </div>
                 </div>
 
                 <!-- Form Actions -->
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary" id="submitBtn">
+                    <button type="submit" class="btn btn-primary btn-block">
                         <i class="fas fa-building"></i> Create Company Profile
                     </button>
-                    <a href="index.php" class="btn-secondary">
+                    <a href="index.php" class="btn btn-secondary btn-block">
                         <i class="fas fa-times"></i> Cancel
                     </a>
                 </div>
             </form>
-        </div>
+        </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer - Updated to match mentor_profile.php -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -914,17 +925,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </footer>
 
     <script>
-        // Add interactive elements
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('companyForm');
-            const submitBtn = document.getElementById('submitBtn');
+            const fileInput = document.getElementById('logo');
+            const fileNameDisplay = document.getElementById('file-name');
             
-            // Add loading state to form submission
-            form.addEventListener('submit', function() {
+            // File upload display
+            fileInput.addEventListener('change', function(e) {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+                    const fileSize = (file.size / 1024 / 1024).toFixed(2); // MB
+                    
+                    if (fileSize > 5) {
+                        alert('File size exceeds 5MB limit. Please choose a smaller file.');
+                        this.value = '';
+                        fileNameDisplay.textContent = '';
+                        return;
+                    }
+                    
+                    fileNameDisplay.textContent = `Selected: ${file.name} (${fileSize} MB)`;
+                    fileNameDisplay.style.color = '#10b981';
+                    
+                    // Update file upload area appearance
+                    const uploadArea = document.querySelector('.file-upload-area');
+                    uploadArea.style.borderColor = '#10b981';
+                    uploadArea.style.background = '#f0fdf4';
+                    uploadArea.querySelector('.file-upload-text').textContent = 'File selected ✓';
+                    uploadArea.querySelector('.file-upload-text').style.color = '#10b981';
+                }
+            });
+            
+            // Form submission handling
+            form.addEventListener('submit', function(e) {
+                const submitBtn = this.querySelector('button[type="submit"]');
                 const originalText = submitBtn.innerHTML;
                 
+                // Validate required fields
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.style.borderColor = '#ef4444';
+                    }
+                });
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Please fill in all required fields marked with *');
+                    return;
+                }
+                
                 // Show loading state
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Company...';
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
                 submitBtn.disabled = true;
                 
                 // Re-enable after 5 seconds if form doesn't submit
@@ -933,28 +987,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     submitBtn.disabled = false;
                 }, 5000);
             });
-
-            // Add focus effects to form inputs
+            
+            // Real-time validation
             const inputs = form.querySelectorAll('input, textarea');
             inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'translateY(-2px)';
+                input.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        this.style.borderColor = '#cbd5e1';
+                    }
                 });
                 
                 input.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'translateY(0)';
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#ef4444';
+                    } else if (this.value.trim()) {
+                        this.style.borderColor = '#10b981';
+                    }
                 });
             });
-
-            // Prevent horizontal overflow
-            function preventHorizontalOverflow() {
-                document.body.style.overflowX = 'hidden';
-                document.documentElement.style.overflowX = 'hidden';
-            }
-
-            // Initialize on load and resize
-            preventHorizontalOverflow();
-            window.addEventListener('resize', preventHorizontalOverflow);
+            
+            // Password strength indicator
+            const passwordInput = document.getElementById('password');
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const helper = this.nextElementSibling;
+                
+                if (password.length === 0) {
+                    helper.textContent = 'Minimum 8 characters with letters and numbers';
+                    helper.style.color = '#64748b';
+                } else if (password.length < 8) {
+                    helper.textContent = 'Password too short (minimum 8 characters)';
+                    helper.style.color = '#ef4444';
+                } else if (!/\d/.test(password) || !/[a-zA-Z]/.test(password)) {
+                    helper.textContent = 'Include both letters and numbers';
+                    helper.style.color = '#f59e0b';
+                } else {
+                    helper.textContent = 'Strong password ✓';
+                    helper.style.color = '#10b981';
+                }
+            });
+            
+            // Year validation
+            const yearInput = document.getElementById('start_year');
+            yearInput.addEventListener('blur', function() {
+                const year = parseInt(this.value);
+                const currentYear = new Date().getFullYear();
+                
+                if (year && year < 1900) {
+                    this.setCustomValidity('Year cannot be before 1900');
+                    this.style.borderColor = '#ef4444';
+                } else if (year && year > currentYear) {
+                    this.setCustomValidity('Year cannot be in the future');
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
         });
     </script>
 </body>
