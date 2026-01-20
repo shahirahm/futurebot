@@ -9,6 +9,10 @@ require_once 'db.php';
 //     exit;
 // }
 
+
+
+
+
 // Handle approve/reject actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['post_id'])) {
     $postId = intval($_POST['post_id']);
@@ -29,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['pos
     header("Location: admin_internship_approvals.php");
     exit;
 }
+
+
 
 // Fetch all pending internship posts
 $stmt = $conn->prepare("
@@ -89,6 +95,8 @@ $result = $stmt->get_result();
         </table>
     <?php endif; ?>
 </div>
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

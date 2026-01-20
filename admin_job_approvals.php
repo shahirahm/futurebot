@@ -3,6 +3,8 @@ session_start();
 require_once 'db.php';
 
 
+
+
 $error = '';
 $success = '';
 
@@ -25,6 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
         $error = "Database error: " . $conn->error;
     }
 }
+
+
 
 // Handle post deletion
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_post'])) {
