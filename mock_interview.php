@@ -3,7 +3,7 @@
 session_start();
 $category = isset($_GET['category']) ? htmlspecialchars($_GET['category']) : 'General';
 
-// Sample score logic for simplicity
+// Sample score logic for simplicity 
 function evaluateAnswers($answers) {
     $score = 0;
     foreach ($answers as $ans) {
