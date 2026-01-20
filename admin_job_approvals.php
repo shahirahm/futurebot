@@ -8,11 +8,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 =======
 
 
+=======
+>>>>>>> 6d26fda31177421ffc4756d7a687b265eeebfc30
 $error = '';
 $success = '';
 >>>>>>> 3a53d640d30dfc9fadbba3f0c744b5a4c85812dc

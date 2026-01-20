@@ -1,7 +1,7 @@
 <?php
 require_once 'db.php';
 
-$admin_email = 'admin@example.com'; // You can replace this with your actual admin email or remove it if not needed
+$admin_email = 'admin@futurebot.com'; 
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ $admin_email = 'admin@example.com'; // You can replace this with your actual adm
         <li class="nav-item">
           <a class="nav-link" href="admin_transactions.php">View Transactions</a>
         </li>
-        <!-- Add more admin pages here if you want -->
+        
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
